@@ -19,47 +19,48 @@ window.onload = function () {
     function initializeGame() {
         for (var i = 0; i < word.length; i++) {
             correctGuesses.push('_');
-        console.log(correctGuesses);
+            console.log(correctGuesses);
         }
         document.getElementById("#bandName").innerHTML = correctGuesses(' ');
         document.getElementById("#mylives").innerHTML = allowedGuesses;
         // var userChoice = event.key;
         // console.log(userChoice);
-        document.onkeyup = function (event) {
+    }
+    document.onkeyup = function (event) {
 
 
 
-            function updateGuesses(letter) {
-                allowedGuesses--;
-                document.getElementById("#mylives").innerHTML = allowedGuesses;
-                var userChoice = event.key;
-                console.log(userChoice);
-                if (word.indexOf(letter) === -1) {
-                    wrongGuesses.push(letter);
-                    document.getElementById("#guessedLetters").innerHTML = wrongGuesses.join(', ');
-                } else {
-                    for (var i = 0; i < word.length; i++) {
-                        if (word[i] === letter) {
-                            correctGuesses[i] = letter;
-                        }
+        function updateGuesses(letter) {
+            allowedGuesses--;
+            document.getElementById("#mylives").innerHTML = allowedGuesses;
+            var userChoice = event.key;
+            console.log(userChoice);
+            if (word.indexOf(letter) === -1) {
+                wrongGuesses.push(letter);
+                document.getElementById("#guessedLetters").innerHTML = wrongGuesses.join(', ');
+            } else {
+                for (var i = 0; i < word.length; i++) {
+                    if (word[i] === letter) {
+                        correctGuesses[i] = letter;
                     }
+                }
 
-                    document.getElementById("#bandName").innerHTML = correctGuesses.join(' ');
-                }
+                document.getElementById("#bandName").innerHTML = correctGuesses.join(' ');
             }
-            
-            function checkWin() {
-                if (correctGuesses.indexOf('_') === -1) {
-                    alert('You Won!');
-                    // play song
-                } else if (allowedGuesses === 0) {
-                    alert('You Lost!');
-                    // play sad trumbone
-                }
+        }
+
+        function checkWin() {
+            if (correctGuesses.indexOf('_') === -1) {
+                alert('You Won!');
+                // play song
+            } else if (allowedGuesses === 0) {
+                alert('You Lost!');
+                // play sad trumbone
+            }
         }
     }
-    }
 }
+
 //add reset button
 // document.getElementById('reset').onclick = function () {
     //     correct.parentNode.removeChild(correct);
